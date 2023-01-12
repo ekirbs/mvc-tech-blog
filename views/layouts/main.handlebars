@@ -4,15 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Museum</title>
+  <title>User Registry</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to the Four Seasons Museum</h1>
+
+  <header class="display-flex justify-space-between align-center p-2">
+    <h1>User Registry</h1>
   </header>
+
   <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
@@ -21,7 +23,8 @@
     <a href="/login">Login</a>
     {{/if}}
   </nav>
-  <main>
+
+  <main class="container container-fluid mt-5">
     <aside>
       <h2>Enjoy the galleries!</h2>
     </aside>
@@ -29,9 +32,11 @@
       {{{body}}}
     </div>
   </main>
+
   {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
+
 </body>
 
 </html>
