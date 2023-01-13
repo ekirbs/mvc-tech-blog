@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: [

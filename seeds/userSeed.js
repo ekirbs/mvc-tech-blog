@@ -23,6 +23,9 @@ const userData = [
   }
 ];
 
-const userPosts = () => User.bulkCreate(userData);
+const userPosts = () => User.bulkCreate(userData, {
+  indivuidualhooks: true,
+  returning: true,
+});
 
 module.exports = userPosts;

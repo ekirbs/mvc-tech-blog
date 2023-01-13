@@ -66,3 +66,22 @@
     //     countVisit: req.session.countVisit,
     //   });
     // });
+
+
+//     // HOMEPAGE.HANDLEBARS
+//     {{#each posts as |post| }}
+// <div class="row mb-4 project">
+//   <div class="col-md-5">
+//     <h2>
+//       {{{get_emoji}}}
+//       <a href="/project/{{post.id}}">{{post.title}}</a>
+//     </h2>
+//     <p>Created by {{user.username}} on {{format_date post.date_created}}</p>
+//   </div>
+//   <div class="col-md-7">
+//     <p>
+//       {{post.post_body}}
+//     </p>
+//   </div>
+// </div>
+// {{/each}}
