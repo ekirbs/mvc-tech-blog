@@ -1,24 +1,4 @@
-const sequelize = require('../config/connection');
-// const { User, Post, Comment } = require('../models');
 
-// const userData = require('./postData.json');
-// const postData = require('./postData.json');
-// const commentData = require('./postData.json');
-
-const seedusers = require('./userSeed.js');
-const seedPosts = require('./postSeed.js');
-const seedComments = require('./commentSeed.js');
-
-
-const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
-
-  await seedusers();
-
-  await seedPosts();
-
-  await seedComments();
-  
   // await User.bulkCreate(userData, {
   //   individualHooks: true,
   //   returning: true,
@@ -46,7 +26,13 @@ const seedDatabase = async () => {
   //   });
   // };
 
-  process.exit(0);
-};
 
-seedDatabase();
+  // const sess = {
+//   secret: 'Super secret secret',
+//   cookie: {},
+//   resave: false,
+//   saveUninitialized: true,
+//   store: new SequelizeStore({
+//     db: sequelize
+//   })
+// };
