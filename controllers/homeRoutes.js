@@ -2,12 +2,17 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   console.log('GET /');
   try {
-    const postData = await Post.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    const dbPostData = await Post.findAll({
+      attributes: [
+        "id",
+        "title",
+        "post_body",
+      ],
+      // { exclude: ['password'] },
+      // order: [['name', 'ASC']],
       include: [
         {
           model: User,
@@ -16,14 +21,18 @@ router.get('/', async (req, res) => {
         {
           model: Comment,
           attributes: ['id', 'comment_body', "post_id", "user_id"],
+          include: {
+            model: User,
+            attributed: ["username"]
+          }
         },
       ],
     });
 
-    const posts = postData.map((post) => post.get({ plain: true }));
+    const posts = dbPostData.map((post) => post.get({ plain: true }));
 
     res.render('homepage', {
-      users,
+      posts,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -31,8 +40,31 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', (req, res) => {
+router.get('/post/:id', withAuth, async (req, res) => {
+  try {
+    const dbPostData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_body', "post_id", "user_id"],
+          include: {
+            model: User,
+            attributed: ["username"]
+          }
+        },
+      ],
+    });
 
+    const post = dbPostData.get({ plain: true });
+    res.render('post', { post, logged_in: req.session.logged_in });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
 });
 
 router.get('/login', (req, res) => {
