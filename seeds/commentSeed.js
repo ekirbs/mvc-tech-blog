@@ -1,4 +1,6 @@
-[
+const { Comment } = require("../models");
+
+const commentData = [
   {
     "comment_text": "I agree! A good file structure is also really helpful when building an application!",
     "user_id": 3,
@@ -14,4 +16,8 @@
     "user_id": 4,
     "post_id": 4
   }
-]
+];
+
+const seedComments = () => Comment.bulkCreate(commentData);
+
+module.exports = seedComments;
