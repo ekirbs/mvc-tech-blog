@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+// const withAuth = require('../utils/auth');
 
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   console.log('GET /');
   try {
     const dbPostData = await Post.findAll({
@@ -11,8 +11,6 @@ router.get('/', withAuth, async (req, res) => {
         "title",
         "post_body",
       ],
-      // { exclude: ['password'] },
-      // order: [['name', 'ASC']],
       include: [
         {
           model: User,
@@ -40,7 +38,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/post/:id', withAuth, async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: [
