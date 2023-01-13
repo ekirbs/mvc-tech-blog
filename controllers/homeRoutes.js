@@ -3,6 +3,7 @@ const { User, Post, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
+  console.log('GET /');
   try {
     const userData = await Post.findAll({
       attributes: { exclude: ['password'] },
@@ -36,6 +37,10 @@ router.get('/', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/post/:id', (req, res) => {
+
 });
 
 router.get('/login', (req, res) => {
