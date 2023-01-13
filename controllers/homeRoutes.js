@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
         "title",
         "post_body",
       ],
+      // order: [[ 'created_at', 'DESC']],
       include: [
         {
           model: User,
@@ -67,7 +68,7 @@ router.get('/post/:id', async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
