@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
           attributes: ['id', 'comment_body', "post_id", "user_id"],
           include: {
             model: User,
-            attributed: ["username"]
+            attributes: ["username"]
           }
         },
       ],
@@ -61,7 +61,7 @@ router.get('/:id', async (req, res) => {
 
     const post = dbPostData.get({ plain: true });
 
-    res.render('post', {
+    res.render('homepage', {
       post,
       logged_in: req.session.logged_in,
     });
@@ -71,14 +71,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
+// router.get('/login', (req, res) => {
+//   if (req.session.logged_in) {
+//     res.redirect('/dashboard');
+//     return;
+//   }
 
-  res.render('login');
-});
+//   res.render('login');
+// });
 
 // router.post('/logout', (req, res) => {
 //   if (req.session.logged_in) {
