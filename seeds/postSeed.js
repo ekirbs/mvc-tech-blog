@@ -20,9 +20,9 @@ const postData = [
     "title": "Powergloves",
     "post_body": "Everyone knows that to reach your maximum hacking potential, you need a Powerglove!",
     "user_id": 2
-  }
+  },
 ];
 
-const seedPosts = () => Post.bulkCreate(postData);
+const postSeed = () => Post.bulkCreate(postData);
 
-module.exports = seedPosts;
+module.exports = postSeed;

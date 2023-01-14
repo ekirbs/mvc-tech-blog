@@ -20,9 +20,9 @@ const commentData = [
     "comment_body": "What did you google?",
     "user_id": 4,
     "post_id": 2
-  }
+  },
 ];
 
-const seedComments = () => Comment.bulkCreate(commentData);
+const commentSeed = () => Comment.bulkCreate(commentData);
 
-module.exports = seedComments;
+module.exports = commentSeed;

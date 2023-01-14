@@ -20,12 +20,14 @@ const userData = [
     "username": "jayQuery99",
     "email": "jqAdmin@gmail.com",
     "password": "${passwordRoot}"
-  }
+  },
 ];
 
-const userPosts = () => User.bulkCreate(userData, {
-  indivuidualhooks: true,
-  returning: true,
-});
+const userSeed = () => User.bulkCreate(userData,
+  {
+    indivuidualhooks: true,
+    returning: true,
+  }
+);
 
-module.exports = userPosts;
+module.exports = userSeed;

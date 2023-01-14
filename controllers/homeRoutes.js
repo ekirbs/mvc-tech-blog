@@ -10,8 +10,9 @@ router.get('/', async (req, res) => {
         "id",
         "title",
         "post_body",
+        "created_at"
       ],
-      // order: [[ 'created_at', 'DESC']],
+      order: [[ 'created_at', 'DESC']],
       include: [
         {
           model: User,
@@ -19,7 +20,8 @@ router.get('/', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment_body', "post_id", "user_id"],
+          attributes: ['id', 'comment_body', "post_id", "user_id", "created_at"],
+          order: [[ 'created_at', 'DESC']],
           include: {
             model: User,
             attributes: ["username"]
@@ -40,9 +42,19 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
+  console.log(req.params.id);
   try {
-    const dbPostData = await Post.findByPk(req.params.id, {
+    const dbPostData = await Post.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        "id",
+        "title",
+        "post_body",
+        "created_at"
+      ],
       include: [
         {
           model: User,
@@ -50,7 +62,8 @@ router.get('/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment_body', "post_id", "user_id"],
+          attributes: ['id', 'comment_body', "post_id", "user_id", "created_at"],
+          order: [[ 'created_at', 'DESC']],
           include: {
             model: User,
             attributes: ["username"]
@@ -59,6 +72,7 @@ router.get('/:id', async (req, res) => {
       ],
     });
 
+    // const post = dbPostData.map((post) => post.get({ plain: true }));
     const post = dbPostData.get({ plain: true });
 
     res.render('homepage', {
@@ -71,14 +85,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// router.get('/login', (req, res) => {
-//   if (req.session.logged_in) {
-//     res.redirect('/dashboard');
-//     return;
-//   }
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
 
-//   res.render('login');
-// });
+  res.render('login');
+});
 
 // router.post('/logout', (req, res) => {
 //   if (req.session.logged_in) {

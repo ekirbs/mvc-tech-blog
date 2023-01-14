@@ -12,8 +12,10 @@ router.get('/', withAuth, async (req, res) => {
       attributes: [
         "id",
         "title",
-        "post_body"
+        "post_body",
+        "created_at"
       ],
+      order: [[ 'created_at', 'DESC']],
       include: [
         {
           model: User,
@@ -21,7 +23,8 @@ router.get('/', withAuth, async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'comment_body', "post_id", "user_id"],
+          attributes: ['id', 'comment_body', "post_id", "user_id", "created_at"],
+          order: [[ 'created_at', 'DESC']],
           include: {
             model: User,
             attributes: ["username"]
@@ -45,6 +48,16 @@ router.get('/', withAuth, async (req, res) => {
 //   }
 
 //   res.render('login');
+// });
+
+// router.post('/logout', (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
 // });
 
 module.exports = router;
