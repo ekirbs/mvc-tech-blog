@@ -1,0 +1,41 @@
+<section>
+  <div class="new-post-card">
+    <h2 class="post-title">New Post</h2>
+    <form class="new-post-form">
+      <div class="form-group">
+        <label for="post-title">Title:</label>
+        <input class="form-input" type="text" id="post-title" />
+      </div>
+      <div class="form-group">
+        <label for="post-body">Content:</label>
+        <input class="form-input" type="text" id="post-body" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Add Post!</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{{#if posts}}
+<section>
+  <h2>Your Posts:</h2>
+  {{#each posts as |post| }}
+  <div class="row mb-4 dashPost">
+    <div class="col-md-5">
+      <h2>
+        <a href="/post/{{post.id}}">{{post.title}}</a>
+      </h2>
+      <p>Created by user: {{post.post_id}}</p>
+    </div>
+    <div class="col-md-7">
+      <p>
+        {{post.post_body}}
+      </p>
+    </div>
+  </div>
+  {{/each}}
+</section>
+{{/if}}
+
+<script src="./js/dashboard.js"></script>

@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
     res.render('homepage', {
       posts,
       logged_in: req.session.logged_in,
+      // username: req.session.username,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -52,14 +53,18 @@ router.get('/:id', async (req, res) => {
           attributes: ['id', 'comment_body', "post_id", "user_id"],
           include: {
             model: User,
-            attributed: ["username"]
+            attributes: ["username"]
           }
         },
       ],
     });
 
     const post = dbPostData.get({ plain: true });
-    res.render('post', { post, logged_in: req.session.logged_in });
+
+    res.render('post', {
+      post,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -74,5 +79,15 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
+
+// router.post('/logout', (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
 
 module.exports = router;

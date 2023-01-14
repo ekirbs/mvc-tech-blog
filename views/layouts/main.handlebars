@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tech Blog User Registry</title>
+  <title>Tech Blog</title>
   <link rel="stylesheet" type="text/css" href="/css/jass.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
@@ -12,12 +12,13 @@
 <body>
 
   <header class="display-flex justify-space-between align-center p-2">
-    <h1>Tech Blog User Registry</h1>
+    <h1>Tech Blog</h1>
   </header>
 
   <nav>
     <a href="/">Home</a>
-    {{#if loggedIn}}
+    {{#if logged_in}}
+    <a href="/dashboard">Dashboard</a>
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
     <a href="/login">Login</a>
@@ -25,15 +26,12 @@
   </nav>
 
   <main class="container container-fluid mt-5">
-    <aside>
-      <h2>Tech Blog Registration</h2>
-    </aside>
     <div class="posts">
       {{{body}}}
     </div>
   </main>
 
-  {{#if loggedIn}}
+  {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 
