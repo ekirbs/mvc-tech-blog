@@ -85,3 +85,24 @@
 //   </div>
 // </div>
 // {{/each}}
+
+
+// // DASHBOARDROUTES
+// router.get('/login', (req, res) => {
+//   if (req.session.logged_in) {
+//     res.redirect('/dashboard');
+//     return;
+//   }
+
+//   res.render('login');
+// });
+
+// router.post('/logout', (req, res) => {
+//   if (req.session.logged_in) {
+//     req.session.destroy(() => {
+//       res.status(204).end();
+//     });
+//   } else {
+//     res.status(404).end();
+//   }
+// });
