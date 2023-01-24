@@ -1,0 +1,32 @@
+{{!-- {{#if post.comments}} --}}
+<div>
+  <div class="card">
+    <h3 id="anchor-comments">Comments:</h3>
+  </div>
+  {{#each this }}
+  <div class="card">
+    <div class="row mb-4 comment">
+
+      <div class="col-md-5">
+        <h2>
+          <a href="/comment/{{id}}"></a>
+        </h2>
+        <p>Created by: {{user.username}}</p>
+      </div>
+
+      <div class="col-md-7">
+        <p>
+          {{comment_body}}
+        </p>
+      </div>
+
+      {{#if (eq comment.user_id req.session.id)}} {{!-- is this being cause by being attached to an array of objects? --}}
+      <a href="/profile/editComment/{{id}}" class="edit-comment">Edit Your Comment</a>
+      <button type="delete" class="delete-comment-btn {{id}}" data-id="{{id}}">Delete This Comment</button>
+      {{/if}}
+
+    </div>
+  </div>
+
+</div>
+{{/each}}
