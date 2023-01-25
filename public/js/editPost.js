@@ -2,10 +2,10 @@ const editPostFormHandler = async (event) => {
   event.preventDefault();
   console.log("we're here!");
 
-  // const id = window.location.toString().split("/")[
-  //   window.location.toString().split("/").length -1
-  // ];
-  const id = event.target.getAttribute('data-id');
+  const id = window.location.toString().split("/")[
+    window.location.toString().split("/").length -1
+  ];
+  // const id = event.target.getAttribute('data-id');
 
   const title = document.querySelector(`input[name="post-title"]`).value;
   const post_body = document.querySelector(`textarea[name="post-body"]`).value;
@@ -30,4 +30,4 @@ const editPostFormHandler = async (event) => {
   }
 };
 
-document.querySelector('#post-button').addEventListener('submit', editPostFormHandler);
+document.querySelector('.edit-post-form').addEventListener('submit', editPostFormHandler);

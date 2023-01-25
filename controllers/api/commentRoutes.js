@@ -76,6 +76,29 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+router.put("/", withAuth, async (req, res) => {
+  // console.log("Creating comment");
+  try {
+    // console.log("inside comment try")
+    console.log(req.body);
+    
+    const editedComment = await Comment.update({
+      where: {
+        id: req.params.id,
+      },
+    },
+    {
+      comment_body: req.body.comment_body,
+    },
+    );
+    // console.log("through put try.");
+    // console.log(editedPost);
+    res.status(200).json(editedComment);
+  } catch (err) {
+    res.status(400).json(err); // 400 vs 500?
+  }
+});
+
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const commentData = await Comment.destroy({

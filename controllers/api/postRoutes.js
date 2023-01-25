@@ -124,6 +124,7 @@ router.put("/:id", withAuth, async (req, res) => {
   try {
     // console.log("inside put try")
     console.log(req.body);
+    console.log(req.params.id);
     
     const editedPost = await Post.update({
       where: {
@@ -136,7 +137,7 @@ router.put("/:id", withAuth, async (req, res) => {
     },
     );
     // console.log("through put try.");
-    // console.log(editedPost);
+    console.log(editedPost);
     res.status(200).json(editedPost);
   } catch (err) {
     res.status(400).json(err); // 400 vs 500?
