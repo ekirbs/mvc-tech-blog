@@ -76,23 +76,19 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.put("/", withAuth, async (req, res) => {
-  // console.log("Creating comment");
-  try {
-    // console.log("inside comment try")
-    console.log(req.body);
-    
-    const editedComment = await Comment.update({
+router.put("/:id", withAuth, async (req, res) => {
+  console.log(req.body)
+  try {   
+    const [editedComment] = await Comment.update(req.body, {
       where: {
-        id: req.params.id,
-      },
-    },
-    {
-      comment_body: req.body.comment_body,
-    },
+        id: req.params.id
+      }
+    }
+    // {
+    //   comment_body: req.body.comment_body,
+    // },
     );
-    // console.log("through put try.");
-    // console.log(editedPost);
+    console.log(editedComment);
     res.status(200).json(editedComment);
   } catch (err) {
     res.status(400).json(err); // 400 vs 500?

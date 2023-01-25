@@ -1,12 +1,15 @@
 const editCommentFormHandler = async (event) => {
   event.preventDefault();
+  console.log("we're inside editComment.js");
 
   const id = window.location.toString().split("/")[
     window.location.toString().split("/").length -1
   ];
-  const comment_body = document.querySelector(`textarea[name="comment-body"]`).value;
 
-  const response = await fetch(`/api/comments/${id}`, {
+  const comment_body = document.querySelector(`textarea[name="comment-body"]`).value;
+  console.log(id, comment_body);
+
+  await fetch(`/api/comments/${id}`, {
     method: 'PUT',
     body: JSON.stringify({
       comment_body,
@@ -16,11 +19,8 @@ const editCommentFormHandler = async (event) => {
     },
   });
 
-  if (response.ok) {
-    document.location.replace('/dashboard');
-  } else {
-    alert('Failed to edit comment.');
-  }
+  document.location.replace('/dashboard');
+  
 };
 
-document.querySelector('#edit-comment-button').addEventListener('submit', editCommentFormHandler);
+document.querySelector('.edit-comment-form').addEventListener('submit', editCommentFormHandler);
