@@ -1,4 +1,3 @@
-{{!-- {{#if post.comments}} --}}
 <div>
   <div class="card">
     <h3 id="anchor-comments">Comments:</h3>
@@ -20,7 +19,7 @@
         </p>
       </div>
 
-      {{#if (eq comment.user_id req.session.id)}} {{!-- is this being cause by being attached to an array of objects? --}}
+      {{#if (eq comment.user_id req.session.id)}} {{!-- not working...is this being cause by being attached to an array of objects? --}}
       <a href="/dashboard/editComment/{{id}}" class="edit-comment">Edit Your Comment</a>
       <button type="delete" class="delete-comment-btn {{id}}" data-id="{{id}}">Delete This Comment</button>
       {{/if}}

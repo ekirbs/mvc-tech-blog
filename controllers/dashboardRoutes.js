@@ -4,7 +4,6 @@ const withAuth = require("../utils/auth");
 
 
 router.get("/", withAuth, async (req, res) => {
-  console.log("GET all posts on dashboard");
   try {
     const postData = await Post.findAll({
       where: {
@@ -57,9 +56,7 @@ router.get("/", withAuth, async (req, res) => {
       ],
     });
 
-
     const posts = postData.map((post) => post.get({ plain: true }));
-
 
     res.render("dashboard", {
       posts,
@@ -73,7 +70,6 @@ router.get("/", withAuth, async (req, res) => {
 
 
 router.get("/post/:id", withAuth, async (req, res) => {
-  console.log(req.params.id);
   try {
     const postData = await Post.findOne({
       where: {
@@ -114,7 +110,6 @@ router.get("/post/:id", withAuth, async (req, res) => {
       ],
     });
 
-
     const post = postData.get({ plain: true });
 
     res.render("post", {
@@ -122,14 +117,12 @@ router.get("/post/:id", withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    // console.error(err);
     res.status(500).json(err);
   };
 });
 
 
 router.get("/editPost/:id", withAuth, async (req, res) => {
-  // console.log(req.params.id);
   try {
     const postData = await Post.findOne({
       where: {
@@ -173,7 +166,6 @@ router.get("/editPost/:id", withAuth, async (req, res) => {
         },
       ],
     });
-
   
     const post = postData.get({ plain: true });
 
@@ -182,14 +174,11 @@ router.get("/editPost/:id", withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    // console.error(err);
     res.status(500).json(err);
   };
 });
 
 router.get("/editUser", withAuth, async (req, res) => {
-  // console.log("GET/ in profile routes for editUser")
-  // console.log(req.session.id);
   try {
     const userData = await User.findOne({
       where: {
@@ -201,21 +190,18 @@ router.get("/editUser", withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    // console.log(userData);
 
     res.render("editUser", {
       user,
       logged_in: req.session.logged_in
     });
   } catch (err) {
-    // console.error(err);
     res.status(500).json(err);
   };
 });
 
 
 router.get("/editComment/:id", withAuth, async (req, res) => {
-  // console.log(req.params.id);
   try {
     const commentData = await Comment.findOne({
       where: {
@@ -263,7 +249,6 @@ router.get("/editComment/:id", withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    // console.error(err);
     res.status(500).json(err);
   };
 });
