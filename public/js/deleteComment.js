@@ -1,4 +1,4 @@
-const deletePostButtonHandler = async (event) => {
+const deleteCommentButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
     console.log(id);
@@ -8,8 +8,7 @@ const deletePostButtonHandler = async (event) => {
     });
     console.log(response);
     if (response.ok) {
-      document.location.reload();
-      // document.location.replace('/dashboard');
+      document.location.replace('/profile');
     } else {
       // alert('Failed to delete profile.');
       alert(response.statusText);
@@ -17,4 +16,4 @@ const deletePostButtonHandler = async (event) => {
   }
 };
 
-document.querySelector(".delete-post-btn").addEventListener("click", deletePostButtonHandler);
+document.querySelector(".delete-comment-btn").addEventListener("click", deleteCommentButtonHandler);

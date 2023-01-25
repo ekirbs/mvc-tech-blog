@@ -1,5 +1,5 @@
 <div class="card">
-  <a href="/profile"> &larr; Back to Profile</a>
+  <a href="/dashboard"> &larr; Back to Dashboard</a>
   <h2>Edit Post</h2>
   <form class="edit-post-form">
     <div>
@@ -10,20 +10,18 @@
       <label for="post-body">Post Body: </label>
       <textarea name="post-body">{{post.post_body}}</textarea>
     </div>
-    <button type="submit">Post It</button>
-    <button type="delete" class="delete-post-btn">Delete It</button>
-    <div>
-      <a href=`/post/{{post.id}}`>{{post.comments.length}}</a>
-    </div>
-  <form class="new-comment-form">
-  <div>
-    <label for="post-body">Comment:</label>
-    <textarea name="comment-body"></textarea>
-  </div>
+    <button type="submit" data-id={{post.id}} id="post-button">Post It</button>
+    <button type="delete" class="delete-post-btn" data-id={{post.id}}>Delete It</button>
+  </form>
 
-  <div>
-    <button type="submit">Comment It</button>
-  </div>
+  <form class="new-comment-form">
+    <div>
+      <textarea name="comment-body" data-post-id={{post.id}} id="add-comment-text-area"></textarea>
+    </div>
+
+    <div>
+      <button class="button" type="submit" id="comment-button">Post Your Comment</button>
+    </div>
   </form>
 </div>
 

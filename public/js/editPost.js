@@ -1,10 +1,13 @@
 const editPostFormHandler = async (event) => {
   event.preventDefault();
+  console.log("we're here!");
 
-  const id = window.location.toString().split("/")[
-    window.location.toString().split("/").length -1
-  ];
-  const title = document.querySelector(`input[name="title"]`).value;
+  // const id = window.location.toString().split("/")[
+  //   window.location.toString().split("/").length -1
+  // ];
+  const id = event.target.getAttribute('data-id');
+
+  const title = document.querySelector(`input[name="post-title"]`).value;
   const post_body = document.querySelector(`textarea[name="post-body"]`).value;
 
   const response = await fetch(`/api/posts/${id}`, {
@@ -17,33 +20,14 @@ const editPostFormHandler = async (event) => {
       'Content-Type': 'application/json',
     },
   });
+  console.log(response);
 
   if (response.ok) {
-    document.location.replace('/dashboard');
+    // document.location.reload();
+    // document.location.replace('/dashboard');
   } else {
-    alert('Failed to create new profile.');
+    alert('Failed to edit post.');
   }
 };
 
-const delPostButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-    console.log(id);
-
-    const response = await fetch(`/api/posts/${id}`, {
-      method: 'DELETE',
-    });
-    console.log(response);
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      // alert('Failed to delete profile.');
-      alert(response.statusText);
-    }
-  }
-};
-
-document.querySelector('.edit-post-form').addEventListener('submit', editPostFormHandler);
-
-// document.querySelector('.profile-list').addEventListener('click', delPostButtonHandler);
-document.querySelector(".delete-post-btn").addEventListener("click", deletePostFormHandler);
+document.querySelector('#post-button').addEventListener('submit', editPostFormHandler);

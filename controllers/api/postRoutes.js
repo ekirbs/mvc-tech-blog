@@ -119,11 +119,11 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.put("/", withAuth, async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   // console.log("Creating post");
   try {
     // console.log("inside put try")
-    // console.log(req.body);
+    console.log(req.body);
     
     const editedPost = await Post.update({
       where: {
