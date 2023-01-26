@@ -4,7 +4,7 @@
 
 This application is a CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts.  The purpose of building this application is to gain a deeper understanding of routes and requests/responses.  While complicated, by the end I really started to get a clear understanding of how all the files were connected and how to trace through it all to find a bug or something I wanted to adjust.  This was an exciting project because it feels we are closer and closer to building a full, semi-professional site.  Another benefit of this application is that I was able to use some packages I had either limited experience with, or no experience at all, such as nodemon and bcrypt.  All-in-all a fun but rewarding challenge!  Enjoy the site!
 
-Link: [MVC Tech Blog](https://ekirbs.github.io/mvc-tech-blog/ 'A CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts.')
+Link: [MVC Tech Blog](https://ekirbs-tech-blog.herokuapp.com/ 'A CMS-style blog site where developers can publish their blog posts and comment on other developers’ posts.')
 
 ## Table of Contents
 
