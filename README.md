@@ -15,13 +15,13 @@ Link: [MVC Tech Blog](https://ekirbs-tech-blog.herokuapp.com/ 'A CMS-style blog 
 
 ## Installation
 
-All packages used in conjunction with this application can be found in the "package.json" file.  In order to run the application on a system, open the file in a terminal and type npm install to download all packages mentioned.
+There is no installation needed if the heroku-deployed application is being used, but to use the application locally, some packages need to be installed. All packages used in conjunction with this application can be found in the "package.json" file.  In order to run the application on a system, open the file in a terminal and type npm install to download all packages mentioned.
 
 ## Usage
 
-To run this application, the server needs to be opened on the PORT.  This can be done with either the command "npm start" or "node server.js" in the terminal. Once the app is listening, the application can be found at: http://localhost:3001.
+This application is deployed to Heroku (use the link at the top), please use it there and disregard the rest of this paragraph.  However, to run this application locally, the server needs to be opened on the PORT.  This can be done with either the command "npm start" or "node server.js" in the terminal. Once the app is listening, the application can be found at: http://localhost:3001.
 
-On the homepage, any previoulsy made comments will be displayed. If a post's title is clicked, it will navigate to the post pge where the post information can be viewed in more detail, along with any comments left on the post.  These can be viewed by anyone, but in order to interact with the blog, the "login" button in the navigation must be pressed, and the user must login, or sign up if they haven't yet created an account.  All accounts must have a unique email and the password must be at least 8 characters long.  All passwords will be encrypted using the bcrypt package.
+In order to interact with the blog, the "login" button in the navigation must be pressed, and the user must login, or sign up if they haven't yet created an account.  All accounts must have a unique email and the password must be at least 8 characters long.  All passwords will be encrypted using the bcrypt package. On the homepage, any previously made comments will be displayed. If a post's title is clicked, it will navigate to the post page where the post information can be viewed in more detail, along with any comments left on the post.
 
 Once logged in, the user has the option of navigating to their dashboard page from the navbar.  From here, the user can add a new post, or view their posts in more detail.  If a logged-in user clicks on "Edit Your Post" or "Edit Your Comment, it will navigate to the different pages where the posts or comments can be edited or deleted.
 
